@@ -6,7 +6,14 @@ The MOST powerful stealer (Cookie stealer, Discord token stealer, Roblox stealer
 
 # Table of Content 
 
+- [Features](https://github.com/idkkkshadoww/Soul-Stealer?tab=readme-ov-file#features)
+  
+- [Requirements](https://github.com/idkkkshadoww/Soul-Stealer?tab=readme-ov-file#requirements)
 
+- [Usage](https://github.com/idkkkshadoww/Soul-Stealer?tab=readme-ov-file#usage)
+  
+- [License](https://github.com/idkkkshadoww/Soul-Stealer?tab=readme-ov-file#license)
+  
 
 
 # ✨Features
