@@ -1,6 +1,7 @@
 # Soul Stealer
 
-![image](https://github.com/user-attachments/assets/0226a5ae-901c-40e6-8385-fc2c2ca1254f)
+![image](https://github.com/user-attachments/assets/e1303925-addb-49b9-8e1e-2f58e50a22ec)
+
 
 
 # Table of Contents
