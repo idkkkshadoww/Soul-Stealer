@@ -1,6 +1,6 @@
 
 
-# Soul Stealer: A Security Research Tool
+# Soul Stealer
 
 Soul Stealer is The MOST powerful stealer (Cookie stealer, Discord token stealer, Roblox stealer, Password stealer, Credit card stealer, Autofill stealer, Steam stealer) and much more.
 
