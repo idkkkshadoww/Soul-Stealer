@@ -15,7 +15,7 @@ Soul Stealer is The MOST powerful stealer (Cookie stealer, Discord token stealer
 
 ## ✨ Features
 
-This tool demonstrates a range of simulated data extraction capabilities for educational purposes, including:
+This tool demonstrates a range of simulated data extraction capabilities , including:
 
 🎮 - Steal Steam Credentials, Riot games, Minecraft session, Epic games, uplay, Growtopia
 
@@ -71,7 +71,7 @@ To build and run the demonstration tool, you need:
 
 ## Usage
 
-Follow these steps to set up and use the tool for educational purposes:
+Follow these steps to set up and use the tool :
 
 1. Download and install Python 3, ensuring the "Add to PATH" option is selected.
  
