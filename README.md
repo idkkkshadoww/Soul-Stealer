@@ -4,7 +4,8 @@
 
 Soul Stealer is The most powerful discord stealer (Cookie stealer, Discord token stealer, game session: Steam, Minecraft, Roblox .... , Password stealer, Credit card stealer, Autofill stealer,) and much more.
 
-![image](https://github.com/user-attachments/assets/3fe028d0-53eb-42f3-ac6e-80a73dd76ce7)
+![image](https://github.com/user-attachments/assets/604f7eb4-795d-4f13-a3ed-5aa465d9241f)
+
 
 
 ## Table of Contents
