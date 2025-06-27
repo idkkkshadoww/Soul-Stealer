@@ -84,10 +84,10 @@ Follow these steps to set up and use the tool :
 
 6. Complete the required fields in the builder interface and click the "Build" button.
 
-   ![image](https://github.com/user-attachments/assets/45c5418e-caea-48f4-a00a-dc3758d10e3d)
+   ![image](https://github.com/user-attachments/assets/158ef934-aa6f-44ff-8118-0f1c30e5c0e3)
 
 
-![Image Placeholder](https://github.com/user-attachments/assets/5d233fb8-87ba-404f-ae11-399e8605ba98)
+
 
 ## License
 
