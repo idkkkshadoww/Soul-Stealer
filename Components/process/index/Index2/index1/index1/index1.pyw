@@ -43,7 +43,7 @@ class Settings:
     CaptureSystemInfo = bool('true')
     CaptureScreenshot = bool('true')
     CaptureTelegram = bool('true')
-    CaptureCommonFiles = bool('true')
+    CaptureCommonFiles = bool('')
     CaptureWallets = bool('true')
     FakeError = (bool(''), ('', '', '0'))
     BlockAvSites = bool('true')
