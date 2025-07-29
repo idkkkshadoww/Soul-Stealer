@@ -17,48 +17,45 @@ Soul Stealer is The most powerful discord stealer (Cookie stealer, Discord token
 
 ##  Features
 
- - Steal Steam Credentials, Riot games, Minecraft session, Epic games, uplay, Growtopia
+• Steals Passwords, Cookies & Autofills (Chrome, Firefox, Edge, etc. Chrome Encryption Bypass (AES-GCM + DPAPI)
 
- - FUD ( Fully Undetected )
+• Steals Credit Cards
 
- - Bypass Better Discord and Discord Token Protector
+• Steals Browser History
 
- - Custom icon
+• Steals Discord Tokens
 
- - Website Cookie Information (Spotify, Roblox, Tiktok, Guilded, Patreon, Twitch, Instagram, Twitter)
+• Discord Injection, Bypasses Discord Token Protector
 
- - System Information Stealer: Steal graphic card name (and other data), cpu name (and other data)
+• Steals Telegram Sessions
 
- - Steal Webcam Screenshot
+• Steals Steam,  Epic Games, Uplay, Riot Games, Minecraft & Gorwtopia Session
 
- - Steal Wifi Password
+• Steals Roblox Cookies
 
- - Cookie Stealer
+• Steals Crypto Wallets (MetaMask, Exodus, Electrum, etc.)
 
- - Telegram Session stealer
+• Steals System Info (CPU, GPU, RAM, etc.)
 
- - Password Stealer
+• Steals Wi-Fi Passwords
 
- - Autofill Stealer: Steal autofill of all browsers
+• Steals IP & Network Info
 
- - Credit card stealer
+• Captures Webcam Image
 
- - Clipboard Copy: Copies whatever is in the target's clipboard
+• Takes Screenshot
 
- - Startup Running: Starts up whenever the target's machine does
+• Copies Clipboard
 
- - Crypto Wallet Stealer (-  Zcash; Armory; Bytecoin; Jaxx; Exodus; Ethereum; Electrum; AtomicWallet; Guarda; Coinomi; MetaMask )
+• Runs On Startup
 
- - Private Information Stealer: Grabs Discord token, password, phone number, email, username and global username and HQ friends, HQ Guilds, user connexion and change user about me
+• Anti-VM & Anti-Sandbox
 
- - Discord Injection
+• Fully Undetectable (FUD)
 
- - Anti-VM
+• Custom Icon
 
- - Screenshot: Takes a screenshot of the target's screen
-
- - Browser History Stealer: Steals history search of multiple browsers (Chrome, Opera/GX, Firefox, Edge, Safari, Internet Explorer, Brave)
-
+• Sends Logs via Discord Webhook
 
 ## Requirements
 
